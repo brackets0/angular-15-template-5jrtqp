@@ -1,0 +1,164 @@
+<main>
+  <stepper [step]="step">
+    <section step class="step present">
+      <div class="form-container">
+        <header>
+          <h2>{{ 'Comment' | plural: 1 }}</h2>
+        </header>
+
+        <ul class="present__options">
+          <li class="google present__option present__option-active">
+            <button class="present__btn btn">
+              <icon class="present__btn-icon" icon="google"></icon>
+              <span class="present__btn-text">Create with Google</span>
+            </button>
+          </li>
+          <li class="present__option twitter">
+            <button class="present__btn btn">
+              <icon class="present__btn-icon" icon="twitter"></icon>
+              <span class="present__btn-text">Create with Twitter</span>
+            </button>
+          </li>
+          <li class="present__option facebook">
+            <button class="present__btn btn">
+              <icon class="present__btn-icon" icon="facebook"></icon>
+              <span class="present__btn-text">Create with Facebook</span>
+            </button>
+          </li>
+          <li class="present__option github">
+            <button class="present__btn btn">
+              <icon class="present__btn-icon" icon="github"></icon>
+              <span class="present__btn-text">Create with Github</span>
+            </button>
+          </li>
+        </ul>
+
+        <div class="divider">
+          <p>Or</p>
+        </div>
+
+        <form
+          [formGroup]="formOne"
+          (ngSubmit)="submitFormOne()"
+          (keydown.enter)="$event.preventDefault()"
+        >
+          <div
+            class="input-group"
+            [ngClass]="{
+              'input--error': formOne.touched && formOne.get('userName').invalid
+            }"
+          >
+            <input-floating-label
+              type="email"
+              formControlName="userName"
+              label="Email"
+              name="userName"
+            >
+            </input-floating-label>
+            <input-validation
+              [control]="this.formOne.get('userName')"
+            ></input-validation>
+          </div>
+          <div
+            class="input-group"
+            [ngClass]="{
+              'input--error': formOne.touched && formOne.get('password').invalid
+            }"
+          >
+            <input-floating-label
+              type="password"
+              formControlName="password"
+              label="Password"
+              name="password"
+            >
+            </input-floating-label>
+            <input-validation
+              [control]="this.formOne.get('password')"
+            ></input-validation>
+          </div>
+          <div class="input-group submit">
+            <input-check
+              formControlName="tester"
+              label="I am a tester"
+              name="tester"
+            ></input-check>
+            <button type="submit" class="btn__blue">next</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section step class="step present">
+      <div class="form-container">
+        <form
+          [formGroup]="formTwo"
+          (ngSubmit)="submitFormTwo()"
+          (keydown.enter)="$event.preventDefault()"
+        >
+          <div
+            class="input-group"
+            [ngClass]="{
+              'input--error':
+                formTwo.touched && !formTwo.controls['industry'].valid
+            }"
+          >
+            <input-floating-label
+              formControlName="testing"
+              label="Anything"
+              name="Anything"
+            >
+            </input-floating-label>
+            <input-validation
+              [control]="this.formTwo.get('testing')"
+            ></input-validation>
+          </div>
+
+          <div
+            class="input-group"
+            [ngClass]="{
+              'input--error':
+                formTwo.touched && !formTwo.controls['testingtwo'].valid
+            }"
+          >
+            <input-floating-label
+              formControlName="testingtwo"
+              label="Anythingtwo"
+              name="Anythingtwo"
+            >
+            </input-floating-label>
+            <input-validation
+              [control]="this.formTwo.get('testingtwo')"
+            ></input-validation>
+          </div>
+
+          <div class="input-group submit">
+            <button type="submit" class="btn btn__blue">create</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section step class="step">
+      <p>three</p>
+      <div class="input-group submit">
+        <button type="submit" class="btn btn__blue" (click)="moveToStep(0)">
+          one
+        </button>
+        <button type="submit" class="btn btn__blue" (click)="moveToStep(1)">
+          two
+        </button>
+        <button type="submit" class="btn btn__blue" (click)="moveToStep(2)">
+          three
+        </button>
+      </div>
+    </section>
+
+    <footer class="stepper__footer">
+      <ul>
+        <li><a routerLink="/faq">FAQ</a></li>
+        <li><a routerLink="/privacy-policy">Privacy</a></li>
+        <li><a routerLink="/terms-of-use">Terms</a></li>
+      </ul>
+    </footer>
+  </stepper>
+</main>
